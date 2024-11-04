@@ -1,12 +1,12 @@
-﻿namespace Divar.Controllers;
-
-public class UserController : Controller
+﻿public class UserController : Controller
 {
-    private readonly IUserRepository _userRepository;
+    private readonly UserManager<User> _userManager;
+    private readonly SignInManager<User> _signInManager;
 
-    public UserController(IUserRepository userRepository)
+    public UserController(UserManager<User> userManager, SignInManager<User> signInManager)
     {
-        _userRepository = userRepository;
+        _userManager = userManager;
+        _signInManager = signInManager;
     }
 
     // Register controller
@@ -17,20 +17,20 @@ public class UserController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Register(User user)
+    public async Task<IActionResult> Register(User user, string password)
     {
         if (ModelState.IsValid)
         {
-            bool emailExists = await _userRepository.EmailExistsAsync(user.Email);
-            if (emailExists)
+            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(password);
+            var result = await _userManager.CreateAsync(user, password);
+            if (result.Succeeded)
             {
-                ModelState.AddModelError("Email", "ایمیل تکراری است.");
-                return View(user);
+                return RedirectToAction("Login", "User");
             }
-
-            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash);
-            await _userRepository.AddUserAsync(user); // Use the repository to add user
-            return RedirectToAction("Login", "User");
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
         }
         return View(user);
     }
@@ -45,23 +45,19 @@ public class UserController : Controller
     [HttpPost]
     public async Task<IActionResult> Login(string email, string password)
     {
-        var user = await _userRepository.GetUserByEmailAsync(email);
-        if (user != null && BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
+        var result = await _signInManager.PasswordSignInAsync(email, password, isPersistent: false, lockoutOnFailure: false);
+        if (result.Succeeded)
         {
-            HttpContext.Session.SetString("UserEmail", user.Email);
-            HttpContext.Session.SetInt32("UserId", user.Id);
-            HttpContext.Session.SetString("FirstName", user.FirstName);
             return RedirectToAction("Index", "Home");
         }
-
         ModelState.AddModelError(string.Empty, "ایمیل یا رمز عبور نادرست است.");
         return View();
     }
 
     // Logout
-    public IActionResult Logout()
+    public async Task<IActionResult> Logout()
     {
-        HttpContext.Session.Clear();
+        await _signInManager.SignOutAsync();
         return RedirectToAction("Index", "Home");
     }
 }

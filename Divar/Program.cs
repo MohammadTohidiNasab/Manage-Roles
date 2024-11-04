@@ -17,6 +17,15 @@ builder.Services.AddIdentity<User, IdentityRole>()
 builder.Services.AddScoped<IAdminRepository, EfAdminRepository>();
 builder.Services.AddScoped<IAdvertisementRepository, EfAdvertisementRepository>();
 builder.Services.AddScoped<IUserRepository, EfUserRepository>();
+//تنظیمات پسورد
+builder.Services.Configure<IdentityOptions>(c =>
+{
+    c.Password.RequiredLength = 50;
+    c.Password.RequiredUniqueChars = 5;
+    c.Password.RequireLowercase = true;
+});
+
+
 
 var app = builder.Build();
 

@@ -19,5 +19,4 @@ BEGIN
     VALUES (@Body, @CreatedDate)
 END
 
-دیگه زیادی شده
 تعمیر دسته بندی
