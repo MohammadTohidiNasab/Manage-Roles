@@ -1,6 +1,6 @@
 ﻿namespace Divar.Models
 {
-    public class User : IdentityUser
+    public class CustomUser : IdentityUser
     {
         [MaxLength(50)]
         [Required(ErrorMessage = "وارد کردن نام الزامی است")]

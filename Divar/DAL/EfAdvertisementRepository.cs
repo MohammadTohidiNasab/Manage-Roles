@@ -32,7 +32,7 @@
         public async Task<Advertisement> GetAdvertisementByIdAsync(int id)
         {
             return await _context.Advertisements
-                .Include(a => a.User)
+                .Include(a => a.CustomUserId)
                 .FirstOrDefaultAsync(a => a.Id == id);
         }
 
@@ -79,7 +79,7 @@
         public async Task<IEnumerable<Advertisement>> GetAdvertisementsByUserIdAsync(int userId, int pageNumber, int pageSize)
         {
             return await _context.Advertisements
-                .Where(ad => ad.UserId == userId)
+                .Where(ad => ad.CustomUserId == userId)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
@@ -88,7 +88,7 @@
         public async Task<int> GetTotalAdvertisementsCountByUserIdAsync(int userId)
         {
             return await _context.Advertisements
-                .CountAsync(ad => ad.UserId == userId);
+                .CountAsync(ad => ad.CustomUserId == userId);
         }
 
     }

@@ -18,7 +18,7 @@ public class AdminController : Controller
 
         var viewModel = new AdminPanel
         {
-            Users = users,
+            CostumUsers = users,
             Advertisements = advertisements,
             Comments = comments
         };

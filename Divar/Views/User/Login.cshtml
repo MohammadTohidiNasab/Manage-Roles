@@ -1,17 +1,22 @@
-﻿@model User
+﻿@model LoginViewModel
 
 <link href="~/css/Login.css" rel="stylesheet" />
 
 <form asp-action="Login" method="post">
     <div>
         <label>ایمیل</label>
-        <input type="email" name="email" />
+        <input asp-for="Email" type="email" />
+        <span asp-validation-for="Email"></span>
     </div>
     <div>
         <label>رمز عبور</label>
-        <input type="password" name="password" />
+        <input asp-for="Password" type="password" />
+        <span asp-validation-for="Password"></span>
     </div>
-
+    <div>
+        <input asp-for="RememberMe" type="checkbox" />
+        <label asp-for="RememberMe">مرا به خاطر بسپار</label>
+    </div>
     <button type="submit">ورود</button>
 </form>
 
@@ -27,11 +32,8 @@
 
 <br />
 
-
-
 <b>
-    <h4 style ="text-align: center;">
-        اکانت ندارید؟<a asp-action="Register" asp-controller="User"> ثبت نام </a>
+    <h4 style="text-align: center;">
+        اکانت ندارید؟ <a asp-action="Register" asp-controller="User">ثبت‌نام</a>
     </h4>
 </b>
-

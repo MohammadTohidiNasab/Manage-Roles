@@ -54,10 +54,10 @@
         [HttpPost]
         public async Task<IActionResult> Create(Advertisement advertisement)
         {
-            var userId = HttpContext.Session.GetInt32("UserId");
+            var userId = HttpContext.Session.GetString("UserId");
             if (ModelState.IsValid)
             {
-                advertisement.UserId = userId;
+                advertisement.CustomUserId = userId;
                 advertisement.CreatedDate = DateTime.Now;
                 await _adRepository.AddAdvertisementAsync(advertisement);
 
@@ -68,6 +68,7 @@
             }
             return View(advertisement);
         }
+
 
         [HttpGet]
         public IActionResult SelectCategory()

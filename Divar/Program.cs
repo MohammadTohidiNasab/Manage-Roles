@@ -9,7 +9,7 @@ builder.Services.AddMemoryCache();
 builder.Services.AddSession(); // Add Session services to project
 
 // Identity and role management
-builder.Services.AddIdentity<User, IdentityRole>()
+builder.Services.AddIdentity<CustomUser, IdentityRole>()
     .AddEntityFrameworkStores<DivarDbContext>()
     .AddDefaultTokenProviders();
 
@@ -23,11 +23,19 @@ builder.Services.Configure<IdentityOptions>(c =>
     c.Password.RequiredLength = 50;
     c.Password.RequiredUniqueChars = 5;
     c.Password.RequireLowercase = true;
+    c.User.RequireUniqueEmail = true;
 });
 
 
-
 var app = builder.Build();
+
+// Initialize roles
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    await RoleInitializer.InitializeAsync(roleManager);
+}
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

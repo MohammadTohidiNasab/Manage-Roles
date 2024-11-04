@@ -1,32 +1,28 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
-namespace Divar.DAL
+namespace Divar.Models
 {
-    public class DivarDbContext : IdentityDbContext<User>
+    public class DivarDbContext : IdentityDbContext<CustomUser>
     {
-        public DivarDbContext(DbContextOptions<DivarDbContext> options) : base(options) { }
+        public DivarDbContext(DbContextOptions<DivarDbContext> options)
+            : base(options)
+        {
+        }
 
+        // DbSet for Advertisement
         public DbSet<Advertisement> Advertisements { get; set; }
-        public DbSet<User> Users { get; set; }
         public DbSet<Comment> Comments { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
 
+            // Configuring the relationship between CustomUser and Advertisement
+            modelBuilder.Entity<Advertisement>()
+                .HasOne(a => a.CustomUser)
+                .WithMany(u => u.Advertisements)
+                .HasForeignKey(a => a.CustomUserId); // Must be of type string now
+        }
 
-        ////make Cascade Delete for Advertisement
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<Advertisement>()
-        //        .HasOne(a => a.User)
-        //        .WithMany(u => u.Advertisements)
-        //        .HasForeignKey(a => a.UserId)
-        //        .OnDelete(DeleteBehavior.Cascade);
-
-        //    // make Email uniqe 
-        //    base.OnModelCreating(modelBuilder);
-        //    modelBuilder.Entity<User>()
-        //        .HasIndex(u => u.Email)
-        //        .IsUnique();
-        //}
     }
 }
-

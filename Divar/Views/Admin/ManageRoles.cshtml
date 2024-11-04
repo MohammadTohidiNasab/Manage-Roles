@@ -1,0 +1,19 @@
+﻿@model Divar.Models.ManageRolesViewModel
+
+<h1>مدیریت نقش‌های کاربر</h1>
+
+<form asp-action="ManageRoles" method="post">
+    <input type="hidden" asp-for="UserId" />
+    <div>
+        <label>نقش‌های موجود:</label>
+@*         @foreach (var role in Model.AvailableRoles)
+        {
+            <div>
+                <input type="checkbox" asp-for="@role.Name" value="@role.Name"
+                       @(Model.UserRoles.Contains(role.Name) ? "checked" : "") />
+                <label>@role.Name</label>
+            </div>
+        }
+ *@    </div>
+    <button type="submit" class="btn btn-primary">بروزرسانی نقش‌ها</button>
+</form>

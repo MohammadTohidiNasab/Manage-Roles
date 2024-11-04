@@ -259,7 +259,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var usr in Model.Users)
+                @foreach (var usr in Model.CostumUsers)
         {
             <tr>
                 <td><a asp-action="DeleteUser" asp-route-id="@usr.Id"> @usr.Id</a></td>

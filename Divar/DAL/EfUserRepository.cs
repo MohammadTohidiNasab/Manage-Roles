@@ -14,13 +14,13 @@
             return await _context.Users.AnyAsync(u => u.Email == email);
         }
 
-        public async Task AddUserAsync(User user)
+        public async Task AddUserAsync(CustomUser user)
         {
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<User> GetUserByEmailAsync(string email)
+        public async Task<CustomUser> GetUserByEmailAsync(string email)
         {
             return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
         }

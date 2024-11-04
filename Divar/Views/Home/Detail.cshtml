@@ -85,13 +85,13 @@
 
         <h6 style="text-align: center"> <b>قیمت :</b>  @Model.Price  </h6>
 
-        <h6 style="text-align: center"> <b> نام منتشر کننده اگهی : </b>  @Model.User?.FirstName @Model.User?.LastName</h6>
-        <h6 style="text-align: center"><b> اطلاعات تماس :</b> @Model.User?.PhoneNumber</h6>
+    <h6 style="text-align: center"> <b> نام منتشر کننده اگهی : </b>  @Model.CustomUser?.FirstName @Model.CustomUser?.LastName</h6>
+    <h6 style="text-align: center"><b> اطلاعات تماس :</b> @Model.CustomUser?.PhoneNumber</h6>
 
 
         <div class="button-group">
             <a class="btn" asp-action="Index">بازگشت به لیست اگهی ها</a>
-            @if (Context.Session.GetInt32("UserId") == Model.UserId && Context.Session.GetString("UserEmail") != null)
+        @if (Context.Session.GetString("UserId") == Model.CustomUserId && Context.Session.GetString("UserEmail") != null)
             {
                 <a class="btn" asp-action="Edit" asp-controller="Home" asp-route-id="@Model.Id">ویرایش اگهی</a>
                 <a class="btn btn-delete" asp-action="Delete" asp-controller="Home" asp-route-id="@Model.Id">حذف اگهی</a>

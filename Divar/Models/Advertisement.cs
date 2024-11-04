@@ -32,8 +32,8 @@
         [Required(ErrorMessage = "افزودن دسته بندی محصول الزامی است")]
         public CategoryType Category { get; set; }
 
-        public int? UserId { get; set; } // Foreign key to User
-        public User? User { get; set; }
+        public string? CustomUserId { get; set; } // Foreign key to User
+        public CustomUser? CustomUser { get; set; }
 
         public string? MobileBrand { get; set; }
         public int SimCardsNumber { get; set; }

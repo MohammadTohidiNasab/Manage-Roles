@@ -7,7 +7,7 @@
         _context = context;
     }
 
-    public async Task<List<User>> GetUsersAsync()
+    public async Task<List<CustomUser>> GetUsersAsync()
     {
         return await _context.Users.ToListAsync();
     }
@@ -22,7 +22,7 @@
         return await _context.Comments.ToListAsync();
     }
 
-    public async Task<User> GetUserByIdAsync(int id)
+    public async Task<CustomUser> GetUserByIdAsync(int id)
     {
         return await _context.Users.FindAsync(id);
     }
@@ -30,17 +30,17 @@
 
 
 
-    public async Task DeleteUserAsync(int id, HttpContext httpContext)
+    public async Task DeleteUserAsync(string id, HttpContext httpContext)
     {
         var user = await GetUserByIdAsync(id);
         if (user != null)
         {
-            var advertisements = _context.Advertisements.Where(a => a.UserId == id);
+            var advertisements = _context.Advertisements.Where(a => a.CustomUserId == id);
             _context.Advertisements.RemoveRange(advertisements);
             _context.Users.Remove(user);
 
             // پاک کردن سشن فقط برای کاربر حذف شده
-            if (httpContext.Session.GetInt32("UserId") == id)
+            if (httpContext.Session.GetString("UserId") == id)
             {
                 httpContext.Session.Clear();
             }

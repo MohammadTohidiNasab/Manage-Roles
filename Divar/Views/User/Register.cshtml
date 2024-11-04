@@ -1,4 +1,4 @@
-﻿@model User
+﻿@model RegisterViewModel
 
 <link href="~/css/Register.css" rel="stylesheet" />
 
@@ -31,7 +31,7 @@
 
     <div>
         <label>رمز عبور</label>
-        <input type="password" name="password" />
+        <input asp-for="Password" type="password" />
         <span asp-validation-for="Password"></span>
     </div>
 
