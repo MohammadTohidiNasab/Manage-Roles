@@ -14,8 +14,8 @@ builder.Services.AddIdentity<CustomUser, IdentityRole>()
     .AddDefaultTokenProviders();
 
 // Register repositories
-builder.Services.AddScoped<IAdminRepository, EfAdminRepository>();
-builder.Services.AddScoped<IAdvertisementRepository, EfAdvertisementRepository>();
+//builder.Services.AddScoped<IAdminRepository, EfAdminRepository>();
+//builder.Services.AddScoped<IAdvertisementRepository, EfAdvertisementRepository>();
 builder.Services.AddScoped<IUserRepository, EfUserRepository>();
 //تنظیمات پسورد
 builder.Services.Configure<IdentityOptions>(c =>
@@ -28,13 +28,6 @@ builder.Services.Configure<IdentityOptions>(c =>
 
 
 var app = builder.Build();
-
-// Initialize roles
-using (var scope = app.Services.CreateScope())
-{
-    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-    await RoleInitializer.InitializeAsync(roleManager);
-}
 
 
 // Configure the HTTP request pipeline.

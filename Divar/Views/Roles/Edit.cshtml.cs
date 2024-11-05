@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Divar.Views.Admin
+namespace Divar.Views.Roles
 {
-    public class ManageRolesModel : PageModel
+    public class EditModel : PageModel
     {
         public void OnGet()
         {
