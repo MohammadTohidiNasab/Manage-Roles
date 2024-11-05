@@ -19,5 +19,27 @@ namespace Divar.Controllers
         }
 
 
+
+        //create roles
+
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult Create(CreateRoleViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var identityRole = new IdentityRole(model.Name);
+
+            }
+
+            return View(model);
+        }
+
     }
 }
