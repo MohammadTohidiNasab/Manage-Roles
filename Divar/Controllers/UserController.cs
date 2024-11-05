@@ -66,12 +66,25 @@ namespace Divar.Controllers
 
                 if (result.Succeeded)
                 {
+                    // Get user info
+                    var user = await _userManager.FindByEmailAsync(model.Email);
+                    if (user != null)
+                    {
+                        // Set session variables
+                        HttpContext.Session.SetString("FirstName", user.FirstName);
+                        HttpContext.Session.SetString("LastName", user.LastName);
+                        HttpContext.Session.SetString("UserEmail", user.Email);
+                        HttpContext.Session.SetString("UserId",user.Id);
+                    }
+
                     return RedirectToAction("Index", "Home");
                 }
+
                 ModelState.AddModelError(string.Empty, "Invalid login attempt.");
             }
             return View(model);
         }
+
 
         // Logout
         public async Task<IActionResult> Logout()

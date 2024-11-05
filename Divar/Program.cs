@@ -15,7 +15,7 @@ builder.Services.AddIdentity<CustomUser, IdentityRole>()
 
 // Register repositories
 //builder.Services.AddScoped<IAdminRepository, EfAdminRepository>();
-//builder.Services.AddScoped<IAdvertisementRepository, EfAdvertisementRepository>();
+builder.Services.AddScoped<IAdvertisementRepository, EfAdvertisementRepository>();
 builder.Services.AddScoped<IUserRepository, EfUserRepository>();
 //تنظیمات پسورد
 builder.Services.Configure<IdentityOptions>(c =>

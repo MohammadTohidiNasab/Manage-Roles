@@ -8,7 +8,7 @@
         Task UpdateAdvertisementAsync(Advertisement advertisement);
         Task DeleteAdvertisementAsync(int id);
         Task<int> GetTotalAdvertisementsCountAsync(CategoryType? category = null, string searchTerm = "");
-        Task<IEnumerable<Advertisement>> GetAdvertisementsByUserIdAsync(int userId, int pageNumber, int pageSize);
-        Task<int> GetTotalAdvertisementsCountByUserIdAsync(int userId);
+        Task<IEnumerable<Advertisement>> GetAdvertisementsByUserIdAsync(string userId, int pageNumber, int pageSize); // Changed int to string
+        Task<int> GetTotalAdvertisementsCountByUserIdAsync(string userId); // Changed int to string
     }
 }

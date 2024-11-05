@@ -57,18 +57,17 @@
             var userId = HttpContext.Session.GetString("UserId");
             if (ModelState.IsValid)
             {
-                advertisement.CustomUserId = userId;
+                advertisement.CustomUserId = userId; // Use string for userId
                 advertisement.CreatedDate = DateTime.Now;
                 await _adRepository.AddAdvertisementAsync(advertisement);
 
-                // پاک کردن سشن بعد از ذخیره آگهی
+                // Clear session after saving advertisement
                 HttpContext.Session.Remove("SelectedCategory");
 
                 return RedirectToAction("Index");
             }
             return View(advertisement);
         }
-
 
         [HttpGet]
         public IActionResult SelectCategory()
@@ -83,7 +82,6 @@
             HttpContext.Session.SetString("SelectedCategory", category.ToString());
             return RedirectToAction("Create");
         }
-
 
         // Edit Advertisement
         [HttpPost]
@@ -100,7 +98,7 @@
                 ad.Content = updatedAdvertisement.Content;
                 ad.Price = updatedAdvertisement.Price;
                 ad.ImageUrl = updatedAdvertisement.ImageUrl;
-                //کاستوم ها
+                // Custom properties
                 ad.SimCardsNumber = updatedAdvertisement.SimCardsNumber;
                 ad.MobileBrand = updatedAdvertisement.MobileBrand;
                 ad.BookAuthor = updatedAdvertisement.BookAuthor;
@@ -108,7 +106,6 @@
                 ad.GearboxType = updatedAdvertisement.GearboxType;
                 ad.HomeAddress = updatedAdvertisement.HomeAddress;
                 ad.HomeSize = updatedAdvertisement.HomeSize;
-
 
                 await _adRepository.UpdateAdvertisementAsync(ad);
                 return RedirectToAction(nameof(Index));
@@ -150,22 +147,21 @@
         // User dashboard 
         public async Task<IActionResult> Dashboard(int pageNumber = 1)
         {
-            var userId = HttpContext.Session.GetInt32("UserId");
-            if (userId == null)
+            var userId = HttpContext.Session.GetString("UserId"); // Changed to string
+            if (string.IsNullOrEmpty(userId))
             {
                 return RedirectToAction("Login", "Account");
             }
 
-            var totalAds = await _adRepository.GetTotalAdvertisementsCountByUserIdAsync(userId.Value);
+            var totalAds = await _adRepository.GetTotalAdvertisementsCountByUserIdAsync(userId);
             var totalPages = (int)Math.Ceiling((double)totalAds / pageSize);
 
-            var ads = await _adRepository.GetAdvertisementsByUserIdAsync(userId.Value, pageNumber, pageSize);
+            var ads = await _adRepository.GetAdvertisementsByUserIdAsync(userId, pageNumber, pageSize);
 
             ViewBag.TotalPages = totalPages;
             ViewBag.CurrentPage = pageNumber;
 
             return View(ads);
         }
-
     }
 }
