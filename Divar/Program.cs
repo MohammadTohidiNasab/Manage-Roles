@@ -20,7 +20,7 @@ builder.Services.AddScoped<IUserRepository, EfUserRepository>();
 //تنظیمات پسورد
 builder.Services.Configure<IdentityOptions>(c =>
 {
-    c.Password.RequiredLength = 50;
+    c.Password.RequiredLength = 5;
     c.Password.RequiredUniqueChars = 5;
     c.Password.RequireLowercase = true;
     c.User.RequireUniqueEmail = true;

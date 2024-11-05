@@ -1,31 +1,30 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿// RegisterViewModel.cs
+using System.ComponentModel.DataAnnotations;
 
 namespace Divar.Models
 {
     public class RegisterViewModel
     {
-        [Required(ErrorMessage = "وارد کردن نام الزامی است")]
-        [MaxLength(50)]
-        public string FirstName { get; set; }
-
-        [Required(ErrorMessage = "وارد کردن نام خانوادگی الزامی است")]
-        [MaxLength(50)]
-        public string LastName { get; set; }
-
-        [Required(ErrorMessage = "وارد کردن ایمیل الزامی است")]
         [EmailAddress]
+        [Required(ErrorMessage = "لطفا ایمیل خود را وارد کنید")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "وارد کردن شماره تلفن الزامی است")]
-        [MaxLength(12)]
+        [Required(ErrorMessage = "لطفا نام خود را وارد کنید")]
+        public string FirstName { get; set; }
+
+        [Required(ErrorMessage = "لطفا نام خانوادگی خود را وارد کنید")]
+        public string LastName { get; set; }
+
+        [Required(ErrorMessage = "لطفا شماره تلفن خود را وارد کنید")]
+        [Phone]
         public string PhoneNumber { get; set; }
 
-        [Required(ErrorMessage = "وارد کردن رمز عبور الزامی است")]
+        [Required(ErrorMessage = "لطفا پسورد را وارد کنید")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "رمز عبور و تایید رمز عبور همخوانی ندارند.")]
+        [Compare("Password", ErrorMessage = "پسوردها مطابقت ندارند")]
         public string ConfirmPassword { get; set; }
     }
 }

@@ -1,18 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿// LoginViewModel.cs
+using System.ComponentModel.DataAnnotations;
 
 namespace Divar.Models
 {
     public class LoginViewModel
     {
-        [Required(ErrorMessage = "وارد کردن ایمیل الزامی است")]
         [EmailAddress]
+        [Required(ErrorMessage = "لطفا ایمیل خود را وارد کنید")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "وارد کردن رمز عبور الزامی است")]
+        [Required(ErrorMessage = "لطفا پسورد را وارد کنید")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Display(Name = "مرا بخاطر بسپار")]
         public bool RememberMe { get; set; }
     }
 }

@@ -13,7 +13,8 @@
         }
 
 
-        //List of roles
+
+        //List of roles         /Roles/List
         public IActionResult List()
         {
             var roles = _roleManager.Roles.ToList();
@@ -24,14 +25,15 @@
 
         //create roles
 
+        // Create action (GET)
         public IActionResult Create()
         {
             return View();
         }
 
-
+        // Create action (POST)
         [HttpPost]
-        public async Task <IActionResult> Create (CreateRoleViewModel model)
+        public async Task<IActionResult> Create([Bind("Name")] CreateRoleViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -40,8 +42,9 @@
 
                 if (result.Succeeded)
                 {
-                    RedirectToAction("List");
+                    return RedirectToAction("List");
                 }
+
                 foreach (var item in result.Errors)
                 {
                     ModelState.AddModelError("", item.Description);
@@ -50,6 +53,9 @@
 
             return View(model);
         }
+
+
+
 
 
 
