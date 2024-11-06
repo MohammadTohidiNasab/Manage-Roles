@@ -126,39 +126,67 @@
         }
 
         // اختصاص دادن نقش به کاربر
-        public IActionResult AssignRole()
-        {
-            ViewBag.Users = _userManager.Users.ToList();
-            ViewBag.Roles = _roleManager.Roles.ToList();
-            return View();
-        }
 
-        [HttpPost]
-        public async Task<IActionResult> AssignRole(AssignRoleViewModel model)
+
+        public async Task<IActionResult> ManageRole(string id)
         {
-            var user = await _userManager.FindByIdAsync(model.UserId);
+            // پیدا کردن کاربر بر اساس Id
+            var user = await _userManager.FindByIdAsync(id);
             if (user == null)
             {
                 return NotFound();
             }
 
-            var result = await _userManager.AddToRoleAsync(user, model.RoleName);
-            if (result.Succeeded)
-            {
-                return RedirectToAction("List");
-            }
+            // گرفتن نقش‌های کاربر و تمام نقش‌ها
+            var userRoles = await _userManager.GetRolesAsync(user);
+            var allRoles = _roleManager.Roles.ToList();
 
-            foreach (var error in result.Errors)
+            // ایجاد مدل مدیریت نقش
+            var model = new ManageRoleViewModel
             {
-                ModelState.AddModelError("", error.Description);
-            }
+                CustomUserId = user.Id,
+                CustomUserName = user.UserName,
+                UserRoles = userRoles.ToList(),
+                AllRoles = allRoles
+            };
 
-            ViewBag.Users = _userManager.Users.ToList();
-            ViewBag.Roles = _roleManager.Roles.ToList();
             return View(model);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> ManageRole(ManageRoleViewModel model)
+        {
+            // پیدا کردن کاربر بر اساس Id
+            var user = await _userManager.FindByIdAsync(model.CustomUserId);
+            if (user == null)
+            {
+                return NotFound();
+            }
 
+            // گرفتن نقش‌های کاربر فعلی
+            var userRoles = await _userManager.GetRolesAsync(user);
+            var rolesToAdd = model.Roles.Except(userRoles).ToList();
+            var rolesToRemove = userRoles.Except(model.Roles).ToList();
+
+            // اضافه کردن نقش‌ها
+            foreach (var role in rolesToAdd)
+            {
+                await _userManager.AddToRoleAsync(user, role);
+            }
+
+            // حذف نقش‌ها
+            foreach (var role in rolesToRemove)
+            {
+                await _userManager.RemoveFromRoleAsync(user, role);
+            }
+
+            return RedirectToAction("List");
+        }
 
     }
+
+
+
+
 }
+
