@@ -1,4 +1,6 @@
-﻿public class AdminController : Controller
+﻿using Microsoft.AspNetCore.Authorization;
+
+public class AdminController : Controller
 {
     private readonly IAdminRepository _adminRepository;
 
@@ -6,6 +8,7 @@
     {
         _adminRepository = adminRepository;
     }
+    [Authorize(Roles = "Admin")]
 
     // نمایش محصولات و کاربران
     public async Task<IActionResult> Index()

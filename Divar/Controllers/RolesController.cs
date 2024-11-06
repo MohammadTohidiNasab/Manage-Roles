@@ -50,12 +50,6 @@
         }
 
 
-
-
-
-
-
-        // ویرایش نقش
         // ویرایش نقش (GET)
         public async Task<IActionResult> Edit(string id)
         {
@@ -125,11 +119,26 @@
             return View(role);
         }
 
-        // اختصاص دادن نقش به کاربر
 
+
+
+        //add role to users
+
+
+        public IActionResult SelectUser()
+        {
+            // نمایش لیست کاربران برای انتخاب
+            var users = _userManager.Users.ToList();
+            return View(users);
+        }
 
         public async Task<IActionResult> ManageRole(string id)
         {
+            if (id == null)
+            {
+                return RedirectToAction("SelectUser");
+            }
+
             // پیدا کردن کاربر بر اساس Id
             var user = await _userManager.FindByIdAsync(id);
             if (user == null)
@@ -153,6 +162,7 @@
             return View(model);
         }
 
+        // مدیریت نقش کاربران (POST)
         [HttpPost]
         public async Task<IActionResult> ManageRole(ManageRoleViewModel model)
         {
@@ -182,11 +192,6 @@
 
             return RedirectToAction("List");
         }
-
     }
 
-
-
-
 }
-
