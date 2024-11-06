@@ -1,6 +1,4 @@
-﻿
-
-public class AdminController : Controller
+﻿public class AdminController : Controller
 {
     private readonly IAdminRepository _adminRepository;
 
@@ -9,7 +7,7 @@ public class AdminController : Controller
         _adminRepository = adminRepository;
     }
 
-    //نمایش محصولات و کاربران
+    // نمایش محصولات و کاربران
     public async Task<IActionResult> Index()
     {
         var users = await _adminRepository.GetUsersAsync();
@@ -18,7 +16,7 @@ public class AdminController : Controller
 
         var viewModel = new AdminPanel
         {
-            CostumUsers = users,
+            Users = users,
             Advertisements = advertisements,
             Comments = comments
         };
@@ -26,25 +24,22 @@ public class AdminController : Controller
         return View(viewModel);
     }
 
-
-        // حذف کاربران
-        public async Task<IActionResult> DeleteUser(int id)
+    // حذف کاربران
+    public async Task<IActionResult> DeleteUser(string id) // تغییر به string
+    {
+        var user = await _adminRepository.GetUserByIdAsync(id);
+        if (user == null)
         {
-            var user = await _adminRepository.GetUserByIdAsync(id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-            return View(user);
+            return NotFound();
         }
+        return View(user);
+    }
 
-        // Delete Confirm
-        [HttpPost, ActionName("Delete")]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            await _adminRepository.DeleteUserAsync(id, HttpContext);  // ارسال HttpContext به متد
-            return RedirectToAction(nameof(Index));
-        }
-
-}   
-  
+    // Delete Confirm
+    [HttpPost, ActionName("Delete")]
+    public async Task<IActionResult> DeleteConfirmed(string id) // تغییر به string
+    {
+        await _adminRepository.DeleteUserAsync(id, HttpContext);  // ارسال HttpContext به متد
+        return RedirectToAction(nameof(Index));
+    }
+}
