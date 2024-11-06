@@ -1,9 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Identity;
-using System.Threading.Tasks;
-using Divar.Models;
-
-namespace Divar.Controllers
+﻿namespace Divar.Controllers
 {
     public class UserController : Controller
     {
@@ -89,6 +84,11 @@ namespace Divar.Controllers
         // Logout
         public async Task<IActionResult> Logout()
         {
+            HttpContext.Session.Remove("FirstName");
+            HttpContext.Session.Remove("LastName");
+            HttpContext.Session.Remove("UserEmail");
+            HttpContext.Session.Remove("UserId");
+
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
