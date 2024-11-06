@@ -30,27 +30,22 @@
         {
             return View();
         }
-
-        // Create action (POST)
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("Name")] CreateRoleViewModel model)
+        public async Task<IActionResult> Create(CreateRoleViewModel model)
         {
             if (ModelState.IsValid)
             {
                 var identityRole = new IdentityRole(model.Name);
                 var result = await _roleManager.CreateAsync(identityRole);
-
                 if (result.Succeeded)
                 {
                     return RedirectToAction("List");
                 }
-
                 foreach (var item in result.Errors)
                 {
                     ModelState.AddModelError("", item.Description);
                 }
             }
-
             return View(model);
         }
 
@@ -59,7 +54,9 @@
 
 
 
+
         // ویرایش نقش
+        // ویرایش نقش (GET)
         public async Task<IActionResult> Edit(string id)
         {
             var role = await _roleManager.FindByIdAsync(id);
@@ -68,16 +65,17 @@
                 return NotFound();
             }
 
-            var model = new CreateRoleViewModel { Name = role.Name };
+            var model = new EditRoleViewModel { Id = role.Id, Name = role.Name };
             return View(model);
         }
 
+        // ویرایش نقش (POST)
         [HttpPost]
-        public async Task<IActionResult> Edit(string id, CreateRoleViewModel model)
+        public async Task<IActionResult> Edit(EditRoleViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var role = await _roleManager.FindByIdAsync(id);
+                var role = await _roleManager.FindByIdAsync(model.Id);
                 if (role == null)
                 {
                     return NotFound();
