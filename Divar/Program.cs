@@ -23,6 +23,7 @@ builder.Services.Configure<IdentityOptions>(c =>
     c.Password.RequiredLength = 5;
     c.Password.RequiredUniqueChars = 5;
     c.Password.RequireLowercase = true;
+    c.Password.RequireUppercase = false;
     c.User.RequireUniqueEmail = true;
 });
 
