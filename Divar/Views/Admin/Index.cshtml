@@ -162,37 +162,13 @@
     </div>
 </div>
 
-<div id="users">
-    <h1 style="text-align: center;">لیست کاربران</h1>
-    <div style="text-align: center; margin-top: 20px;">
-        <!-- دکمه‌ها برای اسکرول -->
-        <button onclick="scrollToSection('ads')">لیست آگهی‌ها</button>
-        <button onclick="scrollToSection('comments')"> لیست کامنت‌ها</button>
-    </div>
-    <table class="table table-sm">
-        <thead>
-            <tr>
-                <th>Id "click for delete User"</th>
-                <th>FirstName</th>
-                <th>LastName</th>
-                <th>Email</th>
-                <th>PhoneNumber</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var usr in Model.Users)
-            {
-                <tr>
-                    <td><a asp-action="DeleteUser" asp-route-id="@usr.Id">@usr.Id</a></td>
-                    <td>@usr.FirstName</td>
-                    <td>@usr.LastName</td>
-                    <td>@usr.Email</td>
-                    <td>@usr.PhoneNumber</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
+<br />
+<hr />
+<hr />
+<hr />
+<br />
+
+
 
 <div id="comments">
     <h1 style="text-align: center;">لیست کامنت ها</h1>
@@ -222,6 +198,52 @@
     </table>
 </div>
 
+<br />
+<hr />
+<hr />
+<hr />
+<br />
+
+
+
+
+<div id="users">
+    <h1 style="text-align: center;">لیست کاربران</h1>
+    <div style="text-align: center; margin-top: 20px;">
+        <!-- دکمه‌ها برای اسکرول -->
+        <button onclick="scrollToSection('ads')">لیست آگهی‌ها</button>
+        <button onclick="scrollToSection('comments')"> لیست کامنت‌ها</button>
+        <button type="submit"> <a asp-action="List" asp-controller="Roles" style="text-decoration: none">مدیریت نقش ها</a> </button>
+    </div>
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>Id "click for delete User"</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Email</th>
+                <th>PhoneNumber</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var usr in Model.Users)
+            {
+                <tr>
+                    <td><a asp-action="DeleteUser" asp-route-id="@usr.Id">@usr.Id</a></td>
+                    <td>@usr.FirstName</td>
+                    <td>@usr.LastName</td>
+                    <td>@usr.Email</td>
+                    <td>@usr.PhoneNumber</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
 <script>
     function scrollToSection(sectionId) {
         const section = document.getElementById(sectionId);
@@ -230,3 +252,9 @@
         }
     }
 </script>
+
+
+
+
+
+

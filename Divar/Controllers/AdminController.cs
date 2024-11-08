@@ -8,8 +8,9 @@ public class AdminController : Controller
     {
         _adminRepository = adminRepository;
     }
-    [Authorize(Roles = "Admin")]
 
+
+    //[Authorize(Roles = "Admin")]
     // نمایش محصولات و کاربران
     public async Task<IActionResult> Index()
     {
