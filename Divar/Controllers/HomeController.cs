@@ -98,6 +98,8 @@
                 ad.Content = updatedAdvertisement.Content;
                 ad.Price = updatedAdvertisement.Price;
                 ad.ImageUrl = updatedAdvertisement.ImageUrl;
+                ad.ImageUrl2 = updatedAdvertisement.ImageUrl2;
+                ad.ImageUrl3 = updatedAdvertisement.ImageUrl3;
                 // Custom properties
                 ad.SimCardsNumber = updatedAdvertisement.SimCardsNumber;
                 ad.MobileBrand = updatedAdvertisement.MobileBrand;
