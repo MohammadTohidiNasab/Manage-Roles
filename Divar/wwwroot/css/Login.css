@@ -1,37 +1,35 @@
-form {
-    text-align: center; /* مرکز کردن نوشته‌ها */
+form.form-center {
+    max-width: 400px;
+    margin: auto;
+    text-align: center;
 }
 
 .label-group {
-    display: flex; /* استفاده از Flexbox برای نمایش افقی */
-    justify-content: center; /* مرکز کردن عناصر */
-    margin-bottom: 10px; /* فاصله پایین گروه */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
-label {
-    display: block; /* نمایش برچسب‌ها به صورت بلوک */
-    margin-right: 10px; /* فاصله بین برچسب‌ها */
-    font-size: 18px; /* اندازه فونت برچسب‌ها */
+.input-large {
+    width: 350px; /* عرض کادر ورودی به 350 پیکسل تغییر یافته */
 }
 
-input {
-    width: 300px; /* تغییر اندازه کادرهای ورودی به 300px */
-    height: 40px; /* اضافه کردن ارتفاع به کادرها */
-    margin: 10px 0; /* افزایش فاصله بین کادرها */
-    font-size: 16px; /* افزایش اندازه فونت کادرها */
+button, .btn-link {
+    margin-top: 20px;
 }
 
-button {
-    width: 200px; /* تغییر عرض دکمه ثبت‌نام به 200px */
-    height: 30px; /* تغییر ارتفاع دکمه ثبت‌نام به 30px */
-    font-size: 14px; /* کاهش اندازه فونت دکمه */
-    margin-top: 20px; /* افزایش فاصله بالای دکمه */
-    background-color: green; /* تغییر رنگ پس‌زمینه دکمه به سبز */
-    color: white; /* تغییر رنگ متن دکمه به سفید */
-    border: none; /* حذف مرز دکمه */
-    cursor: pointer; /* نمایش اشاره‌گر ماوس به صورت اشاره‌گر دستی */
+.form-check {
+    text-align: center;
 }
 
-    button:hover {
-        background-color: darkgreen; /* تغییر رنگ دکمه در حالت هاور */
+.btn-success {
+    background-color: green;
+    color: white;
+    width: 150px; /* عرض دکمه به 150 پیکسل تغییر یافته */
+    height: 40px; /* ارتفاع دکمه به 40 پیکسل تغییر یافته */
+}
+
+    .btn-success:hover {
+        background-color: darkgreen;
     }

@@ -1,39 +1,42 @@
+form.form-center {
+    max-width: 700px;
+    margin: auto;
+    text-align: center;
+}
 
-form {
-    text-align: center; /* مرکز کردن نوشته‌ها */
+.form-inline-group {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .label-group {
-    display: flex; /* استفاده از Flexbox برای نمایش افقی */
-    justify-content: center; /* مرکز کردن عناصر */
-    margin-bottom: 10px; /* فاصله پایین گروه */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-right: 15px;
+    margin-left: 15px;
 }
 
-label {
-    display: block; /* نمایش برچسب‌ها به صورت بلوک */
-    margin-right: 10px; /* فاصله بین برچسب‌ها */
-    font-size: 18px; /* اندازه فونت برچسب‌ها */
-}
-
-input {
-    width: 300px; /* تغییر اندازه کادرهای ورودی به 300px */
-    height: 40px; /* اضافه کردن ارتفاع به کادرها */
-    margin: 10px 0; /* افزایش فاصله بین کادرها */
-    font-size: 16px; /* افزایش اندازه فونت کادرها */
+.input-small {
+    width: 250px;
+    height: 40px;
+    margin: 10px 0;
+    font-size: 16px;
 }
 
 button {
-    width: 200px; /* تغییر عرض دکمه ثبت‌نام به 200px */
-    height: 30px; /* تغییر ارتفاع دکمه ثبت‌نام به 30px */
-    font-size: 14px; /* کاهش اندازه فونت دکمه */
-    margin-top: 20px; /* افزایش فاصله بالای دکمه */
-    background-color: green; /* تغییر رنگ پس‌زمینه دکمه به سبز */
-    color: white; /* تغییر رنگ متن دکمه به سفید */
-    border: none; /* حذف مرز دکمه */
-    cursor: pointer; /* نمایش اشاره‌گر ماوس به صورت اشاره‌گر دستی */
+    width: 200px;
+    height: 40px;
+    font-size: 16px;
+    margin-top: 20px;
+    background-color: green;
+    color: white;
+    border: none;
+    cursor: pointer;
 }
 
     button:hover {
-        background-color: darkgreen; /* تغییر رنگ دکمه در حالت هاور */
+        background-color: darkgreen;
     }
-
