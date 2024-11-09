@@ -6,7 +6,7 @@
 
         public CommentController()
         {
-            _connectionString = "Server=.; Initial Catalog=DivarDb; Integrated Security=True; encrypt=False";
+            _connectionString = "Server=.; Initial Catalog=Divar; Integrated Security=True; encrypt=False";
         }
 
         // Create comment
