@@ -25,6 +25,8 @@ builder.Services.Configure<IdentityOptions>(c =>
     c.Password.RequireLowercase = true;
     c.Password.RequireUppercase = false;
     c.User.RequireUniqueEmail = true;
+    c.Password.RequireDigit = false; 
+
 });
 
 
