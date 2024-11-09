@@ -120,11 +120,7 @@
         }
 
 
-
-
         //add role to users
-
-
         public IActionResult SelectUser()
         {
             // نمایش لیست کاربران برای انتخاب
@@ -139,28 +135,31 @@
                 return RedirectToAction("SelectUser");
             }
 
-            // پیدا کردن کاربر بر اساس Id
+            // Find the user by Id
             var user = await _userManager.FindByIdAsync(id);
             if (user == null)
             {
                 return NotFound();
             }
 
-            // گرفتن نقش‌های کاربر و تمام نقش‌ها
+            // Get user roles and all roles
             var userRoles = await _userManager.GetRolesAsync(user);
             var allRoles = _roleManager.Roles.ToList();
 
-            // ایجاد مدل مدیریت نقش
+            // Create the ManageRoleViewModel including additional fields
             var model = new ManageRoleViewModel
             {
                 CustomUserId = user.Id,
-                CustomUserName = user.UserName,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
                 UserRoles = userRoles.ToList(),
                 AllRoles = allRoles
             };
 
             return View(model);
         }
+
 
         // مدیریت نقش کاربران (POST)
         [HttpPost]

@@ -9,8 +9,9 @@ public class AdminController : Controller
         _adminRepository = adminRepository;
     }
 
+    [Authorize(Roles = "Admin")]
 
-    //[Authorize(Roles = "Admin")]
+
     // نمایش محصولات و کاربران
     public async Task<IActionResult> Index()
     {
@@ -27,6 +28,7 @@ public class AdminController : Controller
 
         return View(viewModel);
     }
+    [Authorize(Roles = "Editor")]
 
     // حذف کاربران
     public async Task<IActionResult> DeleteUser(string id) // تغییر به string
