@@ -14,13 +14,13 @@
 
 
 <div class="search-container">
-    <form method="get" asp-action="Index">
-        <input type="text" class="search-input" placeholder="جستجو..." aria-label="serch" name="searchTerm" value="@ViewBag.CurrentSearchTerm" />
+    <form method="get" asp-action="Search">
+        <input type="text" class="search-input" placeholder="جستجو..." aria-label="search" name="searchTerm" value="@ViewBag.CurrentSearchTerm" />
         <input type="hidden" name="category" value="@ViewBag.CurrentCategory" />
-        <input type="hidden" name="pageNumber" value="@ViewBag.CurrentPage" />
         <button type="submit" class="search-button">جستجو</button>
     </form>
 </div>
+
 
 
 

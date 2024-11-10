@@ -25,6 +25,17 @@
             return View(ads);
         }
 
+
+
+        public async Task<IActionResult> Search(string searchTerm)
+        {
+            // Redirect to Index action with pageNumber set to 1
+            return RedirectToAction("Index", new { pageNumber = 1, searchTerm = searchTerm });
+        }
+
+
+
+
         // Show details
         public async Task<IActionResult> Detail(int id)
         {
