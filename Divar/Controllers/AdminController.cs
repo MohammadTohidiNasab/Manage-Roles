@@ -28,7 +28,7 @@ public class AdminController : Controller
 
         return View(viewModel);
     }
-    [Authorize(Roles = "Editor")]
+    //[Authorize(Roles = "Editor")]
 
     // حذف کاربران
     public async Task<IActionResult> DeleteUser(string id) // تغییر به string
