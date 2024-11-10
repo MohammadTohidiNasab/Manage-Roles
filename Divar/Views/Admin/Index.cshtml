@@ -28,12 +28,13 @@
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Title</th>
-                                    <th>Content</th>
-                                    <th>ImageUrl</th>
-                                    <th>Price</th>
-                                    <th>Created Date</th>
-                                    <th>Author</th>
+                                    <th>تیتر</th>
+                                    <th>محتوا</th>
+                                    <th>عکس</th>
+                                    <th>قیمت</th>
+                                    <th> تاریخ انتشار</th>
+                                    <th>نویسنده کتاب</th>
+                                    <th> کاربر منتشر کننده</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -47,6 +48,7 @@
                                         <td>@ad.Price</td>
                                         <td>@ad.CreatedDate</td>
                                         <td>@ad.BookAuthor</td>
+                                        <td>@ad.CustomUser.FirstName  @ad.CustomUser.LastName</td>
                                     </tr>
                                 }
                             </tbody>
@@ -60,13 +62,15 @@
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Title</th>
-                                    <th>Content</th>
-                                    <th>ImageUrl</th>
-                                    <th>Price</th>
-                                    <th>Created Date</th>
-                                    <th>Size</th>
-                                    <th>Address</th>
+                                    <th>تیتر</th>
+                                    <th>محتوای اگهی</th>
+                                    <th>عکس</th>
+                                    <th>قیمت</th>
+                                    <th> تاریخ انتشار</th>
+                                    <th>متراژ خانه</th>
+                                    <th>ادرس</th>
+                                    <th> کاربر منتشر کننده</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -81,6 +85,8 @@
                                         <td>@ad.CreatedDate</td>
                                         <td>@ad.HomeSize</td>
                                         <td>@ad.HomeAddress</td>
+                                        <td>@ad.CustomUser.FirstName  @ad.CustomUser.LastName</td>
+
                                     </tr>
                                 }
                             </tbody>
@@ -94,13 +100,15 @@
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Title</th>
-                                    <th>Content</th>
-                                    <th>ImageUrl</th>
-                                    <th>Price</th>
-                                    <th>Created Date</th>
-                                    <th>Brand</th>
-                                    <th>Sim Cards</th>
+                                    <th>تیتر</th>
+                                    <th>محتوای اگهی</th>
+                                    <th>عکس</th>
+                                    <th>قیمت</th>
+                                    <th> تاریخ انتشار</th>
+                                    <th>برند</th>
+                                    <th> تعداد سیم کارت</th>
+                                    <th> کاربر منتشر کننده</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -115,6 +123,8 @@
                                         <td>@ad.CreatedDate</td>
                                         <td>@ad.MobileBrand</td>
                                         <td>@ad.SimCardsNumber</td>
+                                        <td>@ad.CustomUser.FirstName  @ad.CustomUser.LastName</td>
+
                                     </tr>
                                 }
                             </tbody>
@@ -128,13 +138,15 @@
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Title</th>
-                                    <th>Content</th>
-                                    <th>ImageUrl</th>
-                                    <th>Price</th>
-                                    <th>Created Date</th>
-                                    <th>Brand</th>
-                                    <th>Gearbox</th>
+                                    <th>تیتر</th>
+                                    <th>محتوای اگهی</th>
+                                    <th>عکس</th>
+                                    <th>قیمت</th>
+                                    <th> تاریخ انتشار</th>
+                                    <th>برند</th>
+                                    <th>نوع گیربکس</th>
+                                    <th> کاربر منتشر کننده</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -148,7 +160,9 @@
                                         <td>@ad.Price</td>
                                         <td>@ad.CreatedDate</td>
                                         <td>@ad.CarBrand</td>
-                                        <td>@ad.GearboxType</td>
+                                        <td>@(ad.GearboxType.GetValueOrDefault() ? "اتوماتیک" : "دنده‌ای")</td> 
+                                        <td>@ad.CustomUser.FirstName  @ad.CustomUser.LastName</td>
+
                                     </tr>
                                 }
                             </tbody>
@@ -179,8 +193,8 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>body</th>
-                <th>publish date</th>
+                <th>محتوای کامنت</th>
+                <th> تاریخ انتشار</th>
             </tr>
         </thead>
         <tbody>
@@ -216,11 +230,11 @@
     <table class="table table-sm">
         <thead>
             <tr>
-                <th>Id "click for delete User"</th>
-                <th>FirstName</th>
-                <th>LastName</th>
-                <th>Email</th>
-                <th>PhoneNumber</th>
+                <th>Id "برای حذف کاربر کلیک کنید"</th>
+                <th>نام</th>
+                <th>نام خانوادگی</th>
+                <th>ایمیل</th>
+                <th>شماره تلفن</th>
             </tr>
         </thead>
         <tbody>
