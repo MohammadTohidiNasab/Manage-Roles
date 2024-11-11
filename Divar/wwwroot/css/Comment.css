@@ -25,17 +25,19 @@
 
 
 table {
-    width: 100%;
+    width: 100%; /* تغییر به 100% */
+    max-width: 800px; /* یا یک مقدار بیشتر */
+    margin: 20px auto; /* مرکز کردن جدول */
     border-collapse: collapse;
-    margin: 20px 0;
 }
 
 th, td {
-    padding: 10px;
-    text-align: left;
+    padding: 10px; /* افزایش پدینگ */
+    text-align: center; /* مرکز چین کردن متن‌ها */
     border: 1px solid #ddd;
+    font-size: 16px; /* افزایش اندازه فونت */
+    font-weight: bold; /* پررنگ کردن متن */
 }
-
 
 th {
     background-color: #f2f2f2;
@@ -54,3 +56,4 @@ td img {
     max-width: 100px;
     height: auto;
 }
+
