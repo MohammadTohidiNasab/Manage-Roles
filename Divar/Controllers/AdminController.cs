@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using Divar.Models;
 
 public class AdminController : Controller
 {
@@ -10,9 +13,6 @@ public class AdminController : Controller
     }
 
     //[Authorize(Roles = "Admin")]
-
-
-    // نمایش محصولات و کاربران
     public async Task<IActionResult> Index()
     {
         var users = await _adminRepository.GetUsersAsync();
@@ -28,10 +28,9 @@ public class AdminController : Controller
 
         return View(viewModel);
     }
-    //[Authorize(Roles = "Editor")]
 
-    // حذف کاربران
-    public async Task<IActionResult> DeleteUser(string id) // تغییر به string
+   // [Authorize(Roles = "Editor")]
+    public async Task<IActionResult> DeleteUser(string id)
     {
         var user = await _adminRepository.GetUserByIdAsync(id);
         if (user == null)
@@ -41,11 +40,10 @@ public class AdminController : Controller
         return View(user);
     }
 
-    // Delete Confirm
     [HttpPost, ActionName("Delete")]
-    public async Task<IActionResult> DeleteConfirmed(string id) // تغییر به string
+    public async Task<IActionResult> DeleteConfirmed(string id)
     {
-        await _adminRepository.DeleteUserAsync(id, HttpContext);  // ارسال HttpContext به متد
+        await _adminRepository.DeleteUserAsync(id, HttpContext);
         return RedirectToAction(nameof(Index));
     }
 }
