@@ -1,9 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-using Divar.Models;
-
-public class AdminController : Controller
+﻿public class AdminController : Controller
 {
     private readonly IAdminRepository _adminRepository;
 
@@ -12,6 +7,8 @@ public class AdminController : Controller
         _adminRepository = adminRepository;
     }
 
+
+     //لیست اگهی ها 
     //[Authorize(Roles = "Admin")]
     public async Task<IActionResult> Index()
     {
@@ -29,6 +26,8 @@ public class AdminController : Controller
         return View(viewModel);
     }
 
+
+    //حذف کاربر
    // [Authorize(Roles = "Editor")]
     public async Task<IActionResult> DeleteUser(string id)
     {
