@@ -1,7 +1,15 @@
 ﻿@model List<Advertisement>
 
-<h2> @Context.Session.GetString("FirstName") داشبورد</h2>
-<h1 style="text-align: center;" >اگهی های شما</h1>
+
+@{
+    string FirstName = Context.Session.GetString("FirstName");
+    string LastName = Context.Session.GetString("LastName");
+    string FullName = $"{FirstName}  {LastName}";
+}
+
+<h2 style ="text-align: center;"> اگهی های شما</h2>
+<h2 style="text-align: center;" >@FullName </h2>
+<br />
 
 @if (Model.Count == 0)
 {

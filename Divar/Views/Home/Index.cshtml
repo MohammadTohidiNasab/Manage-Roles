@@ -8,7 +8,7 @@
 
 @if (Context.Session.GetString("UserEmail") != null)
 {
-        <a asp-action="Dashboard"> <p>   خوش امدید: @Context.Session.GetString("FirstName")</p>   </a>
+    <p>   خوش امدید : @Context.Session.GetString("FirstName")</p>
 }
 
 

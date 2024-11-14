@@ -31,6 +31,18 @@
                 </li>
 
 
+
+
+                <li>
+                    @if (Context.Session.GetString("UserEmail") != null)
+                    {
+                    <li>
+                        <a asp-action="Dashboard" asp-controller="Home">پنل کاربری</a>
+                    </li>
+                    }
+                </li>
+
+
                 <li class="dropdown">
                      <a asp-action="Index" asp-controller="home">
                         خانه
@@ -67,7 +79,6 @@
                     <li><a asp-action="Login" asp-controller="user"> ثبت اگهی</a></li>
                     }
                </li>
-
 
             </ul>
         </nav>
