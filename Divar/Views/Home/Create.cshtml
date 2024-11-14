@@ -55,7 +55,7 @@
         {
             <div class="form-group">
                 <label asp-for="BookAuthor" class="text-center">نویسنده کتاب</label>
-                <input asp-for="BookAuthor" class="form-control" style="width: 70%; margin: 0 auto;" />
+                <input asp-for="BookAuthor" class="form-control" style="width: 70%; margin: 0 auto; text-align: center;" placeholder="اسم نویسنده کتاب " />
                 <span asp-validation-for="BookAuthor" class="text-danger"></span>
             </div>
         }
@@ -63,12 +63,12 @@
         {
             <div class="form-group">
                 <label asp-for="HomeSize" class="text-center">اندازه خانه</label>
-                <input asp-for="HomeSize" class="form-control" style="width: 70%; margin: 0 auto;" />
+                <input asp-for="HomeSize" class="form-control" style="width: 70%; margin: 0 auto;   text-align: center;" placeholder="متراژ خانه را  وارد کنید" />
                 <span asp-validation-for="HomeSize" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="HomeAddress" class="text-center">آدرس خانه</label>
-                <input asp-for="HomeAddress" class="form-control" style="width: 70%; margin: 0 auto;" />
+                <input asp-for="HomeAddress" class="form-control" style="width: 70%; margin: 0 auto; text-align: center;" placeholder="آدرس خانه را  وارد کنید" />
                 <span asp-validation-for="HomeAddress" class="text-danger"></span>
             </div>
         }
@@ -76,12 +76,12 @@
         {
             <div class="form-group">
                 <label asp-for="MobileBrand" class="text-center">برند موبایل</label>
-                <input asp-for="MobileBrand" class="form-control" style="width: 70%; margin: 0 auto;" />
+                <input asp-for="MobileBrand" class="form-control" style="width: 70%; margin: 0 auto;  text-align: center;" placeholder=" برند موبایل را وارد کنید " />
                 <span asp-validation-for="MobileBrand" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SimCardsNumber" class="text-center">تعداد سیم‌کارت‌ها</label>
-                <input asp-for="SimCardsNumber" class="form-control" value="@Model.SimCardsNumber ?? 0" style="width: 70%; margin: 0 auto;" />
+                <input asp-for="SimCardsNumber" class="form-control" value="@Model.SimCardsNumber ?? 0" style="width: 70%; margin: 0 auto; text-align: center; " placeholder="  تعداد سیم کارت ها را وارد کیند " />
                 <span asp-validation-for="SimCardsNumber" class="text-danger"></span>
             </div>
         }
@@ -89,7 +89,7 @@
         {
             <div class="form-group">
                 <label asp-for="CarBrand" class="text-center">برند ماشین</label>
-                <input asp-for="CarBrand" class="form-control" style="width: 70%; margin: 0 auto;" />
+                <input asp-for="CarBrand" class="form-control" style="width: 70%; margin: 0 auto; text-align: center;" placeholder=" برند ماشین را وارد کنید" />
                 <span asp-validation-for="CarBrand" class="text-danger"></span>
             </div>
             <br />
