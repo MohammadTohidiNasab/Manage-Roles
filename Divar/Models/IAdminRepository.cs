@@ -7,5 +7,6 @@
         Task<List<Comment>> GetCommentsAsync();
         Task<CustomUser> GetUserByIdAsync(string id);
         Task DeleteUserAsync(string id, HttpContext httpContext);
+        Task DeleteComment(int id, HttpContext httpContext);
     }
 }

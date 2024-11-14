@@ -45,4 +45,28 @@
         await _adminRepository.DeleteUserAsync(id, HttpContext);
         return RedirectToAction(nameof(Index));
     }
+
+
+
+    // نمایش صفحه تأیید حذف کامنت
+    public async Task<IActionResult> DeleteComment(int id)
+    {
+        var comment = await _adminRepository.GetCommentsAsync(); // فهرست کامنت‌ها برای یافتن کامنت با آیدی مشخص
+        var commentToDelete = comment.FirstOrDefault(c => c.Id == id);
+
+        if (commentToDelete == null)
+        {
+            return NotFound();
+        }
+
+        return View(commentToDelete);
+    }
+
+    // تأیید حذف کامنت
+    [HttpPost, ActionName("DeleteConfirmedComment")]
+    public async Task<IActionResult> DeleteConfirmedComment(int id)
+    {
+        await _adminRepository.DeleteComment(id, HttpContext);
+        return RedirectToAction(nameof(Index));
+    }
 }

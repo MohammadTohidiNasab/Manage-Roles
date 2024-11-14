@@ -37,6 +37,8 @@
             return users;
         }
 
+
+
         public async Task<List<Advertisement>> GetAdvertisementsAsync()
         {
             var advertisements = new List<Advertisement>();
@@ -80,8 +82,6 @@
             }
             return advertisements;
         }
-
-
 
 
         public async Task<List<Comment>> GetCommentsAsync()
@@ -139,6 +139,7 @@
             return user;
         }
 
+
         public async Task DeleteUserAsync(string id, HttpContext httpContext)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -156,6 +157,22 @@
                 {
                     httpContext.Session.Clear();
                 }
+            }
+        }
+
+
+        // for delete comments
+        public async Task DeleteComment(int id, HttpContext httpContext)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var command = new SqlCommand("DeleteComment", connection)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                command.Parameters.AddWithValue("@Id", id);
+                await connection.OpenAsync();
+                await command.ExecuteNonQueryAsync();
             }
         }
     }

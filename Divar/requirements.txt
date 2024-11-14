@@ -86,3 +86,12 @@ BEGIN
     DELETE FROM AspNetUsers WHERE Id = @Id;
 END
 GO
+
+
+
+CREATE PROCEDURE DeleteComment
+    @Id INT
+AS
+BEGIN
+    DELETE FROM Comments WHERE Id = @Id;
+END

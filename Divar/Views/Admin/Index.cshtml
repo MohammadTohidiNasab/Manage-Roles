@@ -181,9 +181,8 @@
 <br />
 
 
-
 <div id="comments">
-    <h1 style="text-align: center;">لیست کامنت ها</h1>
+    <h1 style="text-align: center;">لیست کامنت‌ها</h1>
     <div style="text-align: center; margin-top: 20px;">
         <!-- دکمه‌ها برای اسکرول -->
         <button onclick="scrollToSection('ads')">لیست آگهی‌ها</button>
@@ -195,6 +194,7 @@
                 <th>Id</th>
                 <th>محتوای کامنت</th>
                 <th> تاریخ انتشار</th>
+                <th>عملیات</th> <!-- ستون جدید برای عملیات -->
             </tr>
         </thead>
         <tbody>
@@ -204,19 +204,21 @@
                     <td>@comnt.Id</td>
                     <td>@comnt.Body</td>
                     <td>@comnt.CreatedDate</td>
+                    <td>
+                        <a asp-action="DeleteComment" asp-route-id="@comnt.Id" class="btn btn-danger btn-sm">حذف کامنت</a>
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
 
+
 <br />
 <hr />
 <hr />
 <hr />
 <br />
-
-
 
 
 <div id="users">
@@ -251,8 +253,6 @@
         </tbody>
     </table>
 </div>
-
-
 
 
 

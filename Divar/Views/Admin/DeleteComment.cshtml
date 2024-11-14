@@ -1,0 +1,16 @@
+﻿@model Divar.Models.Comment
+
+<h2>تأیید حذف کامنت</h2>
+
+<h3>آیا مطمئن هستید که می‌خواهید این کامنت را حذف کنید؟</h3>
+<div>
+    <h4>کامنت</h4>
+    <hr />
+    <p>@Model.Body</p>
+</div>
+
+<form asp-action="DeleteConfirmedComment" method="post">
+    <input type="hidden" name="id" value="@Model.Id" />
+    <button type="submit" class="btn btn-danger">حذف</button>
+    <a asp-action="Index" class="btn btn-secondary">لغو</a>
+</form>
