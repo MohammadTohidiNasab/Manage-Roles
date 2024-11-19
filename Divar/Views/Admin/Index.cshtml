@@ -211,7 +211,8 @@
                 <th>Id</th>
                 <th>محتوای کامنت</th>
                 <th> تاریخ انتشار</th>
-                <th>حذف </th> <!-- ستون جدید برای عملیات -->
+                <th>حذف </th>
+                <th>ویرایش</th> 
             </tr>
         </thead>
         <tbody>
@@ -223,6 +224,10 @@
                     <td>@comnt.CreatedDate</td>
                     <td>
                         <a asp-action="DeleteComment" asp-route-id="@comnt.Id" class="btn btn-danger btn-sm">حذف کامنت</a>
+                    </td>
+
+                    <td>
+                        <a asp-action="Edit" asp-controller="Comment" asp-route-id="@comnt.Id" class="btn btn-warning btn-sm">ویرایش کامنت</a>
                     </td>
                 </tr>
             }
@@ -246,6 +251,12 @@
         <button onclick="scrollToSection('comments')"> لیست کامنت‌ها</button>
         <button type="submit"> <a asp-action="List" asp-controller="Roles" style="text-decoration: none">مدیریت نقش ها</a> </button>
     </div>
+
+
+    <div style="text-align: center; margin-top: 20px;">
+        <button>  <a asp-action="Register" asp-controller="User" style="text-decoration: none">افزودن کاربر جدید </a>  </button>
+    </div>
+
     <table class="table table-sm">
         <thead>
             <tr>
@@ -270,6 +281,9 @@
         </tbody>
     </table>
 </div>
+
+
+
 
 
 

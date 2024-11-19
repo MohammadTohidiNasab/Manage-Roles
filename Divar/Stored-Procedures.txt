@@ -96,3 +96,21 @@ AS
 BEGIN
     DELETE FROM Comments WHERE Id = @Id;
 END
+
+
+
+
+
+--اپدیت کامنت
+
+CREATE PROCEDURE sp_UpdateComment
+    @Id INT,
+    @Body NVARCHAR(400),
+    @UpdatedDate DATETIME
+AS
+BEGIN
+    UPDATE Comments
+    SET Body = @Body,
+        CreatedDate = @UpdatedDate
+    WHERE Id = @Id
+END
