@@ -69,4 +69,21 @@
         await _adminRepository.DeleteComment(id, HttpContext);
         return RedirectToAction(nameof(Index));
     }
+
+
+
+
+    //جزییات اگهی
+    public async Task<IActionResult> AdvertisementDetail(int id)
+    {
+        var advertisement = await _adminRepository.GetAdvertisementsAsync();
+        var adDetail = advertisement.FirstOrDefault(ad => ad.Id == id);
+
+        if (adDetail == null)
+        {
+            return NotFound();
+        }
+
+        return View(adDetail);
+    }
 }
